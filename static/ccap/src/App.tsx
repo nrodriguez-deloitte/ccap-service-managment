@@ -1,4 +1,8 @@
 import React from "react";
+
+import "./css/tailwind.css";
+import "./css/variables.css";
+
 import Nav from "./Nav";
 import Home from "./pages/Home";
 import Map from "./pages/Map";
@@ -33,11 +37,11 @@ const App: React.FC = () => {
   };
 
   return (
-    <div style={{ padding: 32, fontFamily: "Arial, sans-serif" }}>
+    <main className="main landing">
       <Nav setPage={setPage} />
 
       {renderPage()}
-    </div>
+    </main>
   );
 };
 
