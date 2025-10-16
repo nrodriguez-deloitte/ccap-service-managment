@@ -13,6 +13,8 @@
   "devDependencies": {
     "react-scripts": "^5.0.1",
     "typescript": "^4.9.5",
+    "tailwindcss": "^4.1.11",
+    "tw-animate-css": "^1.3.6",
     "@types/react": "^16.14.0",
     "@types/react-dom": "^16.9.0",
     "@types/react-router-dom": "^5.3.3"
