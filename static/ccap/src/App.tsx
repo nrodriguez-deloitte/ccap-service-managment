@@ -1,5 +1,6 @@
 import React from "react";
 
+import "./css/globals.css";
 import "./css/tailwind.css";
 import "./css/variables.css";
 
