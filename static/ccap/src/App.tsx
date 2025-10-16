@@ -3,7 +3,7 @@ import React from "react";
 import "./css/tailwind.css";
 import "./css/variables.css";
 
-import Nav from "./Nav";
+import Nav from "./components/molecules/Navigation/Navigation";
 import Home from "./pages/Home";
 import Map from "./pages/Map";
 import Outage from "./pages/Outage";
@@ -38,8 +38,7 @@ const App: React.FC = () => {
 
   return (
     <main className="main landing">
-      <Nav setPage={setPage} />
-
+      <Nav setPage={setPage} page={page} />
       {renderPage()}
     </main>
   );
