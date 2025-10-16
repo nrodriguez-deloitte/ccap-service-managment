@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+.main {
+  background: url("/images/background-gradient.png") no-repeat center center;
+  min-height: 100vh;
+  padding: 32px 24px;
+
+  h2 {
+    font-family: var(--font-family-heading, Inter);
+    font-size: var(--text-2xl);
+    font-weight: 600;
+  }
+
+  a {
+    color: #2563eb;
+  }
+
+  .MuiPaper-root {
+    border: 0;
+    box-shadow: unset;
+  }
+
+  .MuiPaper-root > .MuiBox-root {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}
+
+.landing {
+  color: #164e63;
+
+  h2 {
+    font-size: var(--text-4xl);
+    margin-bottom: 16px;
+  }
+
+  p {
+    font-family: var(--font-family-heading, Inter);
+    font-size: var(--text-lg);
+
+    font-weight: 400;
+    line-height: 30px;
+    max-width: 650px;
+  }
+
+  .landing__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 32px;
+    width: 100%;
+  }
+
+  .landing__text {
+    text-align: center;
+  }
+}
+.map-container {
+  background: url("/images/background-gradient.png") no-repeat center center;
+}
+
+.records {
+  h2 {
+    margin-bottom: 8px;
+  }
+
+  p {
+    margin-bottom: 36px;
+  }
+
+  .records__label {
+    color: var(--foreground);
+    display: flex;
+    font-family: var(--font-family-heading, Inter);
+    font-size: var(--text-lg);
+    font-weight: 500;
+    gap: 6px;
+    padding: 8px 0;
+  }
+
+  .records-card {
+    padding: 8px 0;
+  }
+
+  .records-card__content {
+    padding: 0;
+  }
+}
