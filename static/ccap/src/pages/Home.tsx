@@ -1,4 +1,5 @@
 import React from "react";
+import AiChat from "../components/molecules/AiChat";
 
 const Home: React.FC = () => (
   <>
@@ -13,7 +14,7 @@ const Home: React.FC = () => (
           associated communication notifications.
         </p>
 
-        {/* <AiChat /> */}
+        <AiChat />
       </div>
     </section>
   </>

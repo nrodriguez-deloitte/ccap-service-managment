@@ -1,0 +1,45 @@
+.ai-chat {
+  align-items: center;
+  background: #fff;
+  border-radius: var(--Radius-TailwindCSS-rounded-full, 9999px);
+  border: 1px solid var(--input);
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -2px rgba(16, 24, 40, 0.1);
+  display: flex;
+  gap: var(--Spacing-spacing-sm, 8px);
+  height: 56px;
+  margin-top: 24px;
+  max-width: 700px;
+  min-height: var(--Size-size-input-sm, 36px);
+  padding: var(--Spacing-spacing-sm, 8px) var(--Spacing-spacing-md, 12px)
+    var(--Spacing-spacing-sm, 8px) var(--Spacing-spacing-xl, 24px);
+  width: 100%;
+
+  &__input {
+    color: var(--muted-foreground);
+    font-family: var(--font-family-heading, Inter);
+    font-size: var(--text-base);
+    line-height: 24px; /* 150% */
+    width: 100%;
+
+    &::placeholder {
+      color: var(--text-secondary);
+      opacity: 1; /* Firefox */
+    }
+  }
+
+  &__button {
+    border-radius: var(--Radius-TailwindCSS-rounded-full, 9999px);
+    border: 1px solid #fff;
+    background:
+      linear-gradient(180deg, rgba(165, 243, 252, 0.5) 20%, rgba(14, 116, 144, 0.5) 100%), #164e63;
+    cursor: pointer;
+    display: flex;
+    height: var(--Size-size-button-md, 40px);
+    padding: var(--Padding-p-2, 8px) var(--Padding-p-4, 16px);
+    justify-content: center;
+    align-items: center;
+    gap: var(--Spacing-spacing-sm, 8px);
+  }
+}
