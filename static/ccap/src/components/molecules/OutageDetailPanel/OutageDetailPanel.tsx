@@ -1,0 +1,184 @@
+import { CircleCheck, ExternalLink, Mails, MapPin } from "lucide-react";
+import Link from "next/link";
+import React from "react";
+
+import { useDataOutage } from "@/app/contexts/DataContext";
+import { Badge } from "@/components/ui/badge";
+import { formatCreationTime, getSeverityVariant, isoToDateTime, toTitleCase } from "@/lib/utils";
+
+import "./OutageDetailPanel.styles.scss";
+import { OutageDetailPanelProps } from "./OutageDetailPanel.types";
+
+const OutageDetailPanel: React.FC<OutageDetailPanelProps> = ({
+  incidentId = "",
+  open = false,
+  onClose,
+}) => {
+  const { outageData, loading } = useDataOutage();
+  const _incidentId = incidentId;
+
+  if (loading) {
+    return null;
+  }
+
+  const incidentData = outageData?.OUTAGES.find((outage) => outage.incidentId === _incidentId);
+
+  if (!incidentData) {
+    return null;
+  }
+
+  const { title, severity, region, totalAffected, description, stage, outageTimeline } =
+    incidentData;
+
+  console.log(incidentData);
+  return (
+    <>
+      <div
+        className={`outageDetailPanel-overlay${open ? " outageDetailPanel-overlay--visible" : ""}`}
+        aria-hidden="true"
+        style={{ pointerEvents: open ? "auto" : "none" }}
+        onClick={open ? onClose : undefined}
+      />
+
+      <aside
+        className={`outageDetailPanel${open ? " outageDetailPanel--open" : " outageDetailPanel--closed"}`}
+        aria-label="Outage details"
+        tabIndex={open ? 0 : -1}
+      >
+        <button
+          className="outageDetailPanel__close"
+          aria-label="Close details panel"
+          onClick={onClose}
+        >
+          <span className="outageDetailPanel__closeIcon" aria-hidden="true" />
+        </button>
+
+        <header className="outageDetailPanel__header">
+          <h2 className="outageDetailPanel__title">Outage {_incidentId}</h2>
+          <span className="outageDetailPanel__updated" aria-live="polite">
+            Last updated {isoToDateTime(incidentData?.lastUpdate)}
+          </span>
+        </header>
+
+        <div className="outageDetailPanel__actions">
+          <Link
+            className="outageDetailPanel__link outageDetailPanel__link--primary"
+            aria-label="View communication records"
+            href={`/records?incidentId=${incidentData?.incidentId}`}
+          >
+            <Mails height={16} width={16} aria-hidden="true" />
+            <span className="outageDetailPanel__linkText">View comms records</span>
+          </Link>
+
+          <Link
+            className="outageDetailPanel__link outageDetailPanel__link--secondary"
+            aria-label="Open in Jira"
+            href={`https://www.atlassian.com/software/jira`}
+          >
+            <ExternalLink height={16} width={16} aria-hidden="true" />
+            <span className="outageDetailPanel__linkText">Open in Jira</span>
+          </Link>
+        </div>
+
+        <section className="outageDetailPanel__card" aria-label="Outage summary">
+          <div className="outageDetailPanel__cardContent">
+            <div className="outageDetailPanel__cardHeader">
+              <h3 className="outageDetailPanel__cardTitle">{title}</h3>
+
+              <div className="outageDetailPanel__badges">
+                {severity && (
+                  <Badge className={`rounded-full ${getSeverityVariant(severity)}`}>
+                    {toTitleCase(severity)}
+                  </Badge>
+                )}
+
+                {stage && (
+                  <Badge className="bg-gray-100 text-gray-900 rounded-full">
+                    {toTitleCase(stage)}
+                  </Badge>
+                )}
+
+                <span className="outageDetailPanel__badge outageDetailPanel__badge--location">
+                  <MapPin width={12} height={12} aria-hidden="true" />
+                  {region}
+                </span>
+              </div>
+            </div>
+
+            <div className="outageDetailPanel__cardMeta">
+              <span className="outageDetailPanel__metaId">{_incidentId}</span>
+              <span className="outageDetailPanel__metaAffected">
+                {totalAffected.toLocaleString("en-GB")} services affected
+              </span>
+            </div>
+
+            {description && (
+              <div className="outageDetailPanel__cardDesc">
+                <p>{description}</p>
+              </div>
+            )}
+          </div>
+        </section>
+
+        <section className="outageDetailPanel__timeline" aria-label="Outage timeline">
+          <div className="outageDetailPanel__timelineHeader">
+            <h3 className="outageDetailPanel__timelineTitle">Outage timeline</h3>
+            <span className="outageDetailPanel__timelineUpdated">
+              {formatCreationTime(outageTimeline[0].time)}
+            </span>
+          </div>
+
+          <ol className="outageDetailPanel__timelineList">
+            {outageTimeline.map((item, idx) => (
+              <li key={idx} className="outageDetailPanel__timelineItem">
+                <CircleCheck height={24} width={24} aria-hidden="true" />
+
+                <div className="outageDetailPanel__timelineContent">
+                  <div className="outageDetailPanel__timelineRow">
+                    <span className="outageDetailPanel__timelineLabel">{item.status}</span>
+
+                    {item.severity && (
+                      <Badge className={`rounded-full ${getSeverityVariant(item.severity)}`}>
+                        {toTitleCase(item.severity)}
+                      </Badge>
+                    )}
+                  </div>
+
+                  {item.time && (
+                    <div className="outageDetailPanel__timelineMeta">
+                      <span className="outageDetailPanel__timelineDate">
+                        {isoToDateTime(item.time)}
+                      </span>
+                    </div>
+                  )}
+
+                  <div className="outageDetailPanel__timelineMeta">
+                    {item.stage && (
+                      <Badge className="bg-gray-100 text-gray-900 rounded-full">
+                        {toTitleCase(item.stage)}
+                      </Badge>
+                    )}
+
+                    {typeof item.consumers === "number" && (
+                      <span className="outageDetailPanel__timelineAffected">
+                        {item.consumers.toLocaleString("en-GB")} consumers
+                      </span>
+                    )}
+
+                    {typeof item.affected === "number" && (
+                      <span className="outageDetailPanel__timelineAffected">
+                        {item.affected.toLocaleString("en-GB")} affected
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </section>
+      </aside>
+    </>
+  );
+};
+
+export default OutageDetailPanel;
