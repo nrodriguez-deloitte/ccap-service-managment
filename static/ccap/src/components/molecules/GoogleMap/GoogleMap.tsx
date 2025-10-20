@@ -1,4 +1,4 @@
-import { GoogleMap as ReactGoogleMap, useLoadScript } from "@react-google-maps/api";
+import { GoogleMap, useLoadScript } from "@react-google-maps/api";
 
 import "./GoogleMap.styles.scss";
 import { IGoogleMapProps } from "./IGoogleMap.types";
@@ -14,7 +14,7 @@ const options = {
   streetViewControl: false,
 };
 
-export const GoogleMap = ({ center, zoom = 12 }: IGoogleMapProps) => {
+export const GoogleMapComponent = ({ center, zoom = 12 }: IGoogleMapProps) => {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "", // Use your env setup
   });
@@ -24,7 +24,7 @@ export const GoogleMap = ({ center, zoom = 12 }: IGoogleMapProps) => {
   }
 
   return (
-    <ReactGoogleMap
+    <GoogleMap
       mapContainerStyle={containerStyle}
       center={center}
       zoom={zoom}
@@ -33,4 +33,4 @@ export const GoogleMap = ({ center, zoom = 12 }: IGoogleMapProps) => {
   );
 };
 
-export default GoogleMap;
+export default GoogleMapComponent;

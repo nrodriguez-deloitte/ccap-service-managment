@@ -1,55 +1,54 @@
-import { CircleCheck, ExternalLink, Mails, MapPin } from "lucide-react";
-import Link from "next/link";
+// import { CircleCheck, ExternalLink, Mails, MapPin } from "lucide-react";
 import React from "react";
 
-import { useDataOutage } from "@/app/contexts/DataContext";
-import { Badge } from "@/components/ui/badge";
-import { formatCreationTime, getSeverityVariant, isoToDateTime, toTitleCase } from "@/lib/utils";
+import { Badge } from "../../ui/badge";
+import {
+  formatCreationTime,
+  getSeverityVariant,
+  isoToDateTime,
+  toTitleCase,
+} from "../../../lib/utils";
 
 import "./OutageDetailPanel.styles.scss";
 import { OutageDetailPanelProps } from "./OutageDetailPanel.types";
 
 const OutageDetailPanel: React.FC<OutageDetailPanelProps> = ({
   incidentId = "",
+  outageData,
   open = false,
   onClose,
 }) => {
-  const { outageData, loading } = useDataOutage();
   const _incidentId = incidentId;
 
-  if (loading) {
-    return null;
-  }
-
-  const incidentData = outageData?.OUTAGES.find((outage) => outage.incidentId === _incidentId);
+  const incidentData = outageData?.OUTAGES.find(
+    (outage) => outage.incidentId === _incidentId
+  );
 
   if (!incidentData) {
     return null;
   }
 
-  const { title, severity, region, totalAffected, description, stage, outageTimeline } =
-    incidentData;
-
-  console.log(incidentData);
   return (
     <>
       <div
-        className={`outageDetailPanel-overlay${open ? " outageDetailPanel-overlay--visible" : ""}`}
+        className={`outageDetailPanel-overlay${
+          open ? " outageDetailPanel-overlay--visible" : ""
+        }`}
         aria-hidden="true"
         style={{ pointerEvents: open ? "auto" : "none" }}
         onClick={open ? onClose : undefined}
       />
 
       <aside
-        className={`outageDetailPanel${open ? " outageDetailPanel--open" : " outageDetailPanel--closed"}`}
+        className={`outageDetailPanel${
+          open ? " outageDetailPanel--open" : " outageDetailPanel--closed"
+        }`}
         aria-label="Outage details"
-        tabIndex={open ? 0 : -1}
-      >
+        tabIndex={open ? 0 : -1}>
         <button
           className="outageDetailPanel__close"
           aria-label="Close details panel"
-          onClick={onClose}
-        >
+          onClick={onClose}>
           <span className="outageDetailPanel__closeIcon" aria-hidden="true" />
         </button>
 
@@ -61,46 +60,53 @@ const OutageDetailPanel: React.FC<OutageDetailPanelProps> = ({
         </header>
 
         <div className="outageDetailPanel__actions">
-          <Link
+          <a
             className="outageDetailPanel__link outageDetailPanel__link--primary"
             aria-label="View communication records"
-            href={`/records?incidentId=${incidentData?.incidentId}`}
-          >
-            <Mails height={16} width={16} aria-hidden="true" />
-            <span className="outageDetailPanel__linkText">View comms records</span>
-          </Link>
+            href={`/records?incidentId=${incidentData?.incidentId}`}>
+            {/* <Mails height={16} width={16} aria-hidden="true" /> */}
+            <span className="outageDetailPanel__linkText">
+              View comms records
+            </span>
+          </a>
 
-          <Link
+          <a
             className="outageDetailPanel__link outageDetailPanel__link--secondary"
             aria-label="Open in Jira"
-            href={`https://www.atlassian.com/software/jira`}
-          >
-            <ExternalLink height={16} width={16} aria-hidden="true" />
+            href={`https://www.atlassian.com/software/jira`}>
+            {/* <External height={16} width={16} aria-hidden="true" /> */}
             <span className="outageDetailPanel__linkText">Open in Jira</span>
-          </Link>
+          </a>
         </div>
 
-        <section className="outageDetailPanel__card" aria-label="Outage summary">
+        <section
+          className="outageDetailPanel__card"
+          aria-label="Outage summary">
           <div className="outageDetailPanel__cardContent">
             <div className="outageDetailPanel__cardHeader">
-              <h3 className="outageDetailPanel__cardTitle">{title}</h3>
+              <h3 className="outageDetailPanel__cardTitle">
+                {incidentData.title}
+              </h3>
 
               <div className="outageDetailPanel__badges">
-                {severity && (
-                  <Badge className={`rounded-full ${getSeverityVariant(severity)}`}>
-                    {toTitleCase(severity)}
+                {incidentData.severity && (
+                  <Badge
+                    className={`rounded-full ${getSeverityVariant(
+                      incidentData.severity
+                    )}`}>
+                    {toTitleCase(incidentData.severity)}
                   </Badge>
                 )}
 
-                {stage && (
+                {incidentData.stage && (
                   <Badge className="bg-gray-100 text-gray-900 rounded-full">
-                    {toTitleCase(stage)}
+                    {toTitleCase(incidentData.stage)}
                   </Badge>
                 )}
 
                 <span className="outageDetailPanel__badge outageDetailPanel__badge--location">
-                  <MapPin width={12} height={12} aria-hidden="true" />
-                  {region}
+                  {/* <MapPin width={12} height={12} aria-hidden="true" /> */}
+                  {incidentData.region}
                 </span>
               </div>
             </div>
@@ -108,37 +114,47 @@ const OutageDetailPanel: React.FC<OutageDetailPanelProps> = ({
             <div className="outageDetailPanel__cardMeta">
               <span className="outageDetailPanel__metaId">{_incidentId}</span>
               <span className="outageDetailPanel__metaAffected">
-                {totalAffected.toLocaleString("en-GB")} services affected
+                {incidentData.totalAffected.toLocaleString("en-GB")} services
+                affected
               </span>
             </div>
 
-            {description && (
+            {incidentData.description && (
               <div className="outageDetailPanel__cardDesc">
-                <p>{description}</p>
+                <p>{incidentData.description}</p>
               </div>
             )}
           </div>
         </section>
 
-        <section className="outageDetailPanel__timeline" aria-label="Outage timeline">
+        <section
+          className="outageDetailPanel__timeline"
+          aria-label="Outage timeline">
           <div className="outageDetailPanel__timelineHeader">
-            <h3 className="outageDetailPanel__timelineTitle">Outage timeline</h3>
+            <h3 className="outageDetailPanel__timelineTitle">
+              Outage timeline
+            </h3>
             <span className="outageDetailPanel__timelineUpdated">
-              {formatCreationTime(outageTimeline[0].time)}
+              {formatCreationTime(incidentData.outageTimeline[0].time)}
             </span>
           </div>
 
           <ol className="outageDetailPanel__timelineList">
-            {outageTimeline.map((item, idx) => (
+            {incidentData.outageTimeline.map((item, idx) => (
               <li key={idx} className="outageDetailPanel__timelineItem">
-                <CircleCheck height={24} width={24} aria-hidden="true" />
+                {/* <CircleCheck height={24} width={24} aria-hidden="true" /> */}
 
                 <div className="outageDetailPanel__timelineContent">
                   <div className="outageDetailPanel__timelineRow">
-                    <span className="outageDetailPanel__timelineLabel">{item.status}</span>
+                    <span className="outageDetailPanel__timelineLabel">
+                      {item.status}
+                    </span>
 
                     {item.severity && (
-                      <Badge className={`rounded-full ${getSeverityVariant(item.severity)}`}>
+                      <Badge
+                        className={`rounded-full ${getSeverityVariant(
+                          item.severity
+                        )}`}>
                         {toTitleCase(item.severity)}
                       </Badge>
                     )}
