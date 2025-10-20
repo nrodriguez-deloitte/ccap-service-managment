@@ -30,10 +30,13 @@ const App: React.FC = () => {
       // const data = await res.json();
 
       setOutageData(DUMMY_CONSTANTS);
-
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (err: any) {
-      setError(err.message || "Unknown error");
+    } catch (err) {
+      // Type guard to safely access error message
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("Unknown error");
+      }
     } finally {
       setLoading(false);
     }
