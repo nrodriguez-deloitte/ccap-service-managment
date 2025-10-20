@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { Map } from "../components/organisms/Map";
 import { IOutageDataProps } from "../types/global.types";
 
@@ -14,7 +12,6 @@ type MapPageProps = {
 const MapPage: React.FC<MapPageProps> = ({ outageData }: MapPageProps) => {
   return (
     <div className="landing__content">
-      {/* Pass a required 'id' prop to Map component */}
       <Map id="main-map" outageData={outageData} />
     </div>
   );
