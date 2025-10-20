@@ -5,9 +5,9 @@ type RecordsPageProps = {
   outageData: IOutageDataProps;
 };
 
-const Records: React.FC<RecordsPageProps> = (props: RecordsPageProps) => {
-  const { outageData } = props;
-
+const Records: React.FC<RecordsPageProps> = ({
+  outageData,
+}: RecordsPageProps) => {
   return (
     <>
       <h1>Records</h1>

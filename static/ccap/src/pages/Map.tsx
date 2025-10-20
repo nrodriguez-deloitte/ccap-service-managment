@@ -11,9 +11,7 @@ type MapPageProps = {
  * MapPage displays the main map with outage data.
  * @param outageData - Data to pass to the Map component.
  */
-const MapPage: React.FC<MapPageProps> = (props: MapPageProps) => {
-  const { outageData } = props;
-
+const MapPage: React.FC<MapPageProps> = ({ outageData }: MapPageProps) => {
   return (
     <div className="landing__content">
       {/* Pass a required 'id' prop to Map component */}

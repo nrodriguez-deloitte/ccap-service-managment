@@ -9,11 +9,10 @@ import { OutageTabs } from "../OutageTabs";
 import { formatCreationTime } from "../../../lib/utils";
 import { Card } from "../../ui/card";
 
-export const Map = (props: IMapProps) => {
+export const Map = ({ id, outageData }: IMapProps) => {
   const [panelOpen, setPanelOpen] = useState(false);
   const [incidentId, setIncidentId] = useState("");
 
-  const { id, outageData } = props;
   return (
     <div id={id} className="map">
       <Card className="map__card">
@@ -24,7 +23,7 @@ export const Map = (props: IMapProps) => {
             <p>Last updated at {formatCreationTime(outageData.LAST_UPDATED)}</p>
           </div>
 
-          <OutageStats id="outage-stat" />
+          <OutageStats id="outage-stat" outageData={outageData} />
         </div>
 
         <Card className="map__map p-0 overflow-hidden">
@@ -33,6 +32,7 @@ export const Map = (props: IMapProps) => {
 
         <OutageTabs
           id="outage-tabs"
+          outageData={outageData}
           onCardClick={(incidentId) => {
             setPanelOpen(true);
             setIncidentId(incidentId);
@@ -42,6 +42,7 @@ export const Map = (props: IMapProps) => {
         <OutageDetailPanel
           incidentId={incidentId}
           open={panelOpen}
+          outageData={outageData}
           onClose={() => setPanelOpen(false)}
         />
       </Card>
