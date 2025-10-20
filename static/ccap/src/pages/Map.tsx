@@ -1,10 +1,25 @@
-import React from "react";
+import { useState } from "react";
 
-const Map: React.FC = () => (
-  <>
-    <h1>Map</h1>
-    <p>Map view coming soon.</p>
-  </>
-);
+import { Map } from "../components/organisms/Map";
+import { IOutageDataProps } from "../types/global.types";
 
-export default Map;
+type MapPageProps = {
+  outageData: IOutageDataProps;
+};
+
+/**
+ * MapPage displays the main map with outage data.
+ * @param outageData - Data to pass to the Map component.
+ */
+const MapPage: React.FC<MapPageProps> = (props: MapPageProps) => {
+  const { outageData } = props;
+
+  return (
+    <div className="landing__content">
+      {/* Pass a required 'id' prop to Map component */}
+      <Map id="main-map" outageData={outageData} />
+    </div>
+  );
+};
+
+export default MapPage;
