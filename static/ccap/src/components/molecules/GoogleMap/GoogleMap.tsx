@@ -16,7 +16,7 @@ const options = {
 
 export const GoogleMapComponent = ({ center, zoom = 12 }: IGoogleMapProps) => {
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "", // Use your env setup
+    googleMapsApiKey: "AIzaSyApQnVLVEBTGCGgkgGPtMkEynv5y6n5aLI",
   });
 
   if (!isLoaded) {
