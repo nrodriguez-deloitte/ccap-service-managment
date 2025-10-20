@@ -1,0 +1,50 @@
+.outage-stats {
+  display: flex;
+  gap: 24px;
+  width: 100%;
+
+  @media screen and (min-width: 1200px) {
+    margin-left: auto;
+    width: auto;
+  }
+
+  li {
+    list-style: none;
+    width: 100%;
+  }
+
+  &__card {
+    height: 100%;
+    display: flex;
+    min-width: 160px;
+    padding: 16px;
+    align-items: center;
+    gap: 0;
+    flex: 1 0 0;
+
+    color: var(--foreground);
+    text-align: center;
+
+    /* shadcn typography/Small */
+    font-family: var(--font-family-body, Inter);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-font-medium, 500);
+    line-height: 20px; /* 142.857% */
+
+    span {
+      color: var(--foreground);
+      text-align: center;
+
+      /* shadcn typography/h4 */
+      font-family: var(--font-family-heading, Inter);
+      font-size: var(--text-xl);
+      font-weight: var(--font-weight-font-semibold, 600);
+      line-height: 32px; /* 160% */
+      letter-spacing: -0.5px;
+
+      &.--red {
+        color: #991b1b;
+      }
+    }
+  }
+}
