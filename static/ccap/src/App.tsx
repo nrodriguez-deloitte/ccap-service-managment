@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-import "./css/globals.css";
-import "./css/tailwind.css";
-import "./css/variables.css";
+import "./styles/globals.css";
+import "./styles/variables.css";
 
 import Nav from "./components/molecules/Navigation/Navigation";
 import Home from "./pages/Home";
@@ -73,7 +72,6 @@ const App: React.FC = () => {
   return (
     <main className="main landing">
       <Nav setPage={setPage} page={page} />
-
       {renderPage()}
     </main>
   );
