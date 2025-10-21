@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { invoke } from "@forge/bridge";
 import { IOutageDataProps } from "../types/global.types";
-import { DUMMY_CONSTANTS } from "./constants";
 
 export function useFetchOutageData() {
   const [data, setData] = useState<IOutageDataProps>({} as IOutageDataProps);
@@ -15,10 +14,11 @@ export function useFetchOutageData() {
       try {
         const result = (await invoke("getOutageData")) as {
           success: boolean;
+          data?: IOutageDataProps;
           error?: string;
         };
-        if (result.success) {
-          setData(DUMMY_CONSTANTS); // Replace with actual data if available
+        if (result.success && result.data) {
+          setData(result.data);
         } else {
           throw new Error(result.error || "Failed to fetch outage data");
         }
