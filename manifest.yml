@@ -15,6 +15,9 @@ resources:
     path: static/ccap/build
 
 permissions:
+  content:
+    styles:
+      - "unsafe-inline"
   external:
     fetch:
       backend:
