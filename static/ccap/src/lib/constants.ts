@@ -7,6 +7,7 @@ export const DUMMY_CONSTANTS = {
     {
       incidentId: "INC100001",
       communicationId: "COM200001",
+      compliance: false,
       status: "Active",
       type: "major-outages",
       severity: "major",
@@ -68,6 +69,7 @@ export const DUMMY_CONSTANTS = {
     {
       incidentId: "INC100002",
       communicationId: "COM200002",
+      compliance: false,
       status: "Resolved",
       type: "significant-outages",
       severity: "significant",
@@ -129,6 +131,7 @@ export const DUMMY_CONSTANTS = {
     {
       incidentId: "INC100003",
       communicationId: "COM200003",
+      compliance: false,
       status: "Active",
       type: "new-outages",
       severity: "significant",
@@ -190,6 +193,7 @@ export const DUMMY_CONSTANTS = {
     {
       incidentId: "INC100004",
       communicationId: "COM200004",
+      compliance: false,
       status: "Resolved",
       type: "exceeding-slo-sla",
       severity: "major",
@@ -251,6 +255,7 @@ export const DUMMY_CONSTANTS = {
     {
       incidentId: "INC100005",
       communicationId: "COM200005",
+      compliance: false,
       status: "Active",
       type: "major-outages",
       severity: "major",
@@ -312,6 +317,7 @@ export const DUMMY_CONSTANTS = {
     {
       incidentId: "INC100006",
       communicationId: "COM200006",
+      compliance: false,
       status: "Resolved",
       type: "significant-outages",
       severity: "significant",
@@ -373,6 +379,7 @@ export const DUMMY_CONSTANTS = {
     {
       incidentId: "INC100007",
       communicationId: "COM200007",
+      compliance: false,
       status: "Active",
       type: "new-outages",
       severity: "major",
@@ -434,6 +441,7 @@ export const DUMMY_CONSTANTS = {
     {
       incidentId: "INC100008",
       communicationId: "COM200008",
+      compliance: false,
       status: "Resolved",
       type: "exceeding-slo-sla",
       severity: "significant",
@@ -495,6 +503,7 @@ export const DUMMY_CONSTANTS = {
     {
       incidentId: "INC100009",
       communicationId: "COM200009",
+      compliance: false,
       status: "Active",
       type: "major-outages",
       severity: "major",
@@ -556,6 +565,7 @@ export const DUMMY_CONSTANTS = {
     {
       incidentId: "INC100010",
       communicationId: "COM200010",
+      compliance: false,
       status: "Resolved",
       type: "significant-outages",
       severity: "significant",
@@ -617,6 +627,7 @@ export const DUMMY_CONSTANTS = {
     {
       incidentId: "INC100011",
       communicationId: "COM200011",
+      compliance: false,
       status: "Active",
       type: "new-outages",
       severity: "significant",
@@ -678,6 +689,7 @@ export const DUMMY_CONSTANTS = {
     {
       incidentId: "INC100012",
       communicationId: "COM200012",
+      compliance: false,
       status: "Resolved",
       type: "exceeding-slo-sla",
       severity: "major",
@@ -739,6 +751,7 @@ export const DUMMY_CONSTANTS = {
     {
       incidentId: "INC100013",
       communicationId: "COM200013",
+      compliance: false,
       status: "Active",
       type: "major-outages",
       severity: "major",
@@ -800,6 +813,7 @@ export const DUMMY_CONSTANTS = {
     {
       incidentId: "INC100014",
       communicationId: "COM200014",
+      compliance: false,
       status: "Resolved",
       type: "significant-outages",
       severity: "significant",
@@ -861,6 +875,7 @@ export const DUMMY_CONSTANTS = {
     {
       incidentId: "INC100015",
       communicationId: "COM200015",
+      compliance: false,
       status: "Active",
       type: "new-outages",
       severity: "major",
@@ -922,6 +937,7 @@ export const DUMMY_CONSTANTS = {
     {
       incidentId: "INC100016",
       communicationId: "COM200016",
+      compliance: false,
       status: "Resolved",
       type: "exceeding-slo-sla",
       severity: "significant",
@@ -983,6 +999,7 @@ export const DUMMY_CONSTANTS = {
     {
       incidentId: "INC100017",
       communicationId: "COM200017",
+      compliance: false,
       status: "Active",
       type: "major-outages",
       severity: "major",
@@ -1044,6 +1061,7 @@ export const DUMMY_CONSTANTS = {
     {
       incidentId: "INC100018",
       communicationId: "COM200018",
+      compliance: false,
       status: "Resolved",
       type: "significant-outages",
       severity: "significant",
@@ -1105,6 +1123,7 @@ export const DUMMY_CONSTANTS = {
     {
       incidentId: "INC100019",
       communicationId: "COM200019",
+      compliance: false,
       status: "Active",
       type: "new-outages",
       severity: "major",
@@ -1166,6 +1185,7 @@ export const DUMMY_CONSTANTS = {
     {
       incidentId: "INC100020",
       communicationId: "COM200020",
+      compliance: false,
       status: "Resolved",
       type: "exceeding-slo-sla",
       severity: "significant",
@@ -1227,6 +1247,7 @@ export const DUMMY_CONSTANTS = {
     {
       incidentId: "INC100021",
       communicationId: "COM200021",
+      compliance: false,
       status: "Active",
       type: "major-outages",
       severity: "major",
@@ -1288,6 +1309,7 @@ export const DUMMY_CONSTANTS = {
     {
       incidentId: "INC100022",
       communicationId: "COM200022",
+      compliance: false,
       status: "Resolved",
       type: "significant-outages",
       severity: "significant",
@@ -1349,6 +1371,7 @@ export const DUMMY_CONSTANTS = {
     {
       incidentId: "INC100023",
       communicationId: "COM200023",
+      compliance: false,
       status: "Active",
       type: "new-outages",
       severity: "major",
@@ -1410,6 +1433,7 @@ export const DUMMY_CONSTANTS = {
     {
       incidentId: "INC100024",
       communicationId: "COM200024",
+      compliance: false,
       status: "Resolved",
       type: "exceeding-slo-sla",
       severity: "major",
@@ -1471,6 +1495,7 @@ export const DUMMY_CONSTANTS = {
     {
       incidentId: "INC100025",
       communicationId: "COM200025",
+      compliance: false,
       status: "Active",
       type: "major-outages",
       severity: "major",
@@ -1532,6 +1557,7 @@ export const DUMMY_CONSTANTS = {
     {
       incidentId: "INC100026",
       communicationId: "COM200026",
+      compliance: false,
       status: "Resolved",
       type: "significant-outages",
       severity: "significant",
@@ -1593,6 +1619,7 @@ export const DUMMY_CONSTANTS = {
     {
       incidentId: "INC100027",
       communicationId: "COM200027",
+      compliance: false,
       status: "Active",
       type: "new-outages",
       severity: "major",
@@ -1654,6 +1681,7 @@ export const DUMMY_CONSTANTS = {
     {
       incidentId: "INC100028",
       communicationId: "COM200028",
+      compliance: false,
       status: "Resolved",
       type: "exceeding-slo-sla",
       severity: "significant",
@@ -1715,6 +1743,7 @@ export const DUMMY_CONSTANTS = {
     {
       incidentId: "INC100029",
       communicationId: "COM200029",
+      compliance: false,
       status: "Active",
       type: "major-outages",
       severity: "major",
@@ -1775,6 +1804,7 @@ export const DUMMY_CONSTANTS = {
     {
       incidentId: "INC100030",
       communicationId: "COM200030",
+      compliance: false,
       status: "Resolved",
       type: "significant-outages",
       severity: "significant",
@@ -2082,6 +2112,7 @@ export const DUMMY_CONSTANTS = {
 // {
 //   incidentId: "", // INCXXXXX
 //   communicationId: "", // COMXXXXX
+//   compliance: null, // boolean
 //   status: "", // Active | Resolved
 //   type: "", // new-outages | major-outages | significant-outages | exceeding-slo-sla
 //   severity: "", // major | significant

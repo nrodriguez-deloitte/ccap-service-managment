@@ -15,6 +15,7 @@ export interface OutageTimelineEvent {
 export interface IOutageProps {
   incidentId: string;
   communicationId: string;
+  compliance: boolean;
   status: string;
   type: string;
   severity: string;

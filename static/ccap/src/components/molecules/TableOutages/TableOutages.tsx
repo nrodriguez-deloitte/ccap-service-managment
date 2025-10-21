@@ -1,6 +1,6 @@
 "use client";
 
-import { FilterIcon } from "lucide-react";
+import { FilterIcon, LucideTriangleAlert } from "lucide-react";
 import {
   MaterialReactTable,
   MRT_ColumnDef,
@@ -21,6 +21,13 @@ const TableOutages: React.FC<TableOutagesProps> = ({
 }) => {
   const columns = useMemo<MRT_ColumnDef<IOutageProps>[]>(
     () => [
+      {
+        accessorKey: "compliance",
+        header: "Compliance",
+        Cell: ({ cell }): React.ReactNode => {
+          return cell.getValue<boolean>() ? null : <LucideTriangleAlert />;
+        },
+      },
       {
         accessorKey: "incidentId",
         header: "Incident ID",
