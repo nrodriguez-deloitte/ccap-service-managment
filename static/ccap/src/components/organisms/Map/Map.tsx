@@ -9,21 +9,31 @@ import { OutageTabs } from "../OutageTabs";
 import { formatCreationTime } from "../../../lib/utils";
 import { Card } from "../../ui/card";
 
-export const Map = ({ id, outageData }: IMapProps) => {
+export const Map = ({ id, loading = true, outageData }: IMapProps) => {
   const [panelOpen, setPanelOpen] = useState(false);
   const [incidentId, setIncidentId] = useState("");
 
   return (
-    <div id={id} className="map">
+    <div id={id} className="map w-full">
       <Card className="map__card">
         <div className="map__header">
           <div className="map__text">
             <h2>Active ACMA Outages</h2>
 
-            <p>Last updated at {formatCreationTime(outageData.LAST_UPDATED)}</p>
+            {loading ? (
+              <div className="animate-pulse h-5 w-full rounded-full bg-gray-200" />
+            ) : (
+              <p>
+                Last updated at {formatCreationTime(outageData.LAST_UPDATED)}
+              </p>
+            )}
           </div>
 
-          <OutageStats id="outage-stat" outageData={outageData} />
+          <OutageStats
+            id="outage-stat"
+            loading={loading}
+            outageData={outageData}
+          />
         </div>
 
         <Card className="map__map p-0 overflow-hidden">
@@ -32,6 +42,7 @@ export const Map = ({ id, outageData }: IMapProps) => {
 
         <OutageTabs
           id="outage-tabs"
+          loading={loading}
           outageData={outageData}
           onCardClick={(incidentId) => {
             setPanelOpen(true);
@@ -42,6 +53,7 @@ export const Map = ({ id, outageData }: IMapProps) => {
         <OutageDetailPanel
           incidentId={incidentId}
           open={panelOpen}
+          loading={loading}
           outageData={outageData}
           onClose={() => setPanelOpen(false)}
         />
