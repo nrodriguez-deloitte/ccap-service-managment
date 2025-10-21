@@ -5,10 +5,26 @@ import "./styles/globals.css";
 import Nav from "./components/molecules/Navigation/Navigation";
 import Home from "./pages/Home";
 import Map from "./pages/Map";
-import Outage from "./pages/Outage";
+import Outages from "./pages/Outages";
 
 const App: React.FC = () => {
   const [page, setPage] = useState<string>("home");
+
+  const getClassName = () => {
+    switch (page) {
+      case "home":
+        return "landing";
+
+      case "map":
+        return "map-container";
+
+      case "outages":
+        return "records records-container";
+
+      default:
+        break;
+    }
+  };
 
   const renderPage = () => {
     switch (page) {
@@ -18,8 +34,8 @@ const App: React.FC = () => {
       case "map":
         return <Map />;
 
-      case "outage":
-        return <Outage />;
+      case "outages":
+        return <Outages />;
 
       default:
         return (
@@ -40,7 +56,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <main className="main landing">
+    <main className={`main ${getClassName()}`}>
       <Nav setPage={setPage} page={page} />
 
       {renderPage()}
