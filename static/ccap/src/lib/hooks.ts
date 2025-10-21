@@ -31,8 +31,8 @@ export function useFetchOutageData() {
       setLoading(true);
       setError(null);
       try {
-        const res = await fetch("https://mock.httpstatus.io/200");
-        if (!res.ok) throw new Error("Failed to fetch users");
+        // const res = await fetch("https://mock.httpstatus.io/200");
+        // if (!res.ok) throw new Error("Failed to fetch users");
         // const data = await res.json();
 
         setData(DUMMY_CONSTANTS);
