@@ -1,3 +1,10 @@
+app:
+  id: ari:cloud:ecosystem::app/ad374e41-31d5-4d57-9921-3c92890af29e
+  runtime:
+    name: nodejs22.x
+    memoryMB: 256
+    architecture: arm64
+
 modules:
   jiraServiceManagement:queuePage:
     - key: ccap-service-management
@@ -6,6 +13,7 @@ modules:
         function: resolver
       layout: blank
       title: CCAP Service Management
+
   function:
     - key: resolver
       handler: index.handler
@@ -17,18 +25,6 @@ resources:
 permissions:
   content:
     styles:
-      - "unsafe-inline"
-  external:
-    fetch:
-      backend:
-        - address: https://mock.httpstatus.io
-        - address: https://maps.googleapis.com
-        - address: https://fonts.googleapis.com
-  scopes: []
+      - unsafe-inline
 
-app:
-  runtime:
-    name: nodejs22.x
-    memoryMB: 256
-    architecture: arm64
-  id: ari:cloud:ecosystem::app/ad374e41-31d5-4d57-9921-3c92890af29e
+    scopes: []
