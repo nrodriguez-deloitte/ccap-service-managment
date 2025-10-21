@@ -9,6 +9,7 @@ import Outage from "./pages/Outage";
 import Records from "./pages/Records";
 import { DUMMY_CONSTANTS } from "./lib/constants";
 import { IOutageDataProps } from "./types/global.types";
+import { LucideLoaderPinwheel } from "lucide-react";
 
 const App: React.FC = () => {
   const [page, setPage] = useState<string>("home");
@@ -71,7 +72,34 @@ const App: React.FC = () => {
   return (
     <main className="main landing">
       <Nav setPage={setPage} page={page} />
-      {renderPage()}
+
+      {loading ? (
+        <div
+          style={{
+            width: "100vw",
+            height: "calc(100vh - 150px)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}>
+          <LucideLoaderPinwheel
+            height={32}
+            width={32}
+            style={{
+              animation: "spin 1s linear infinite",
+            }}
+          />
+          <style>
+            {`
+              @keyframes spin {
+          100% { transform: rotate(360deg); }
+              }
+            `}
+          </style>
+        </div>
+      ) : (
+        renderPage()
+      )}
     </main>
   );
 };
