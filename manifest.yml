@@ -4,13 +4,23 @@ modules:
       resource: main
       resolver:
         function: resolver
+      layout: blank
       title: CCAP Service Management
   function:
     - key: resolver
       handler: index.handler
+
 resources:
   - key: main
     path: static/ccap/build
+
+permissions:
+  external:
+    fetch:
+      backend:
+        - https://mock.httpstatus.io
+        - https://maps.googleapis.com
+
 app:
   runtime:
     name: nodejs22.x
