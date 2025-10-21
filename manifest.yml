@@ -29,9 +29,20 @@ permissions:
     styles:
       - unsafe-inline
   external:
+    scripts:
+      - address: https://maps.googleapis.com
+    styles:
+      - address: https://fonts.googleapis.com
+    images:
+      - address: https://maps.gstatic.com
+      - address: https://maps.googleapis.com
+      - address: https://*.googleusercontent.com
+      - address: https://*.google.com
     fetch:
       client:
         - address: https://mock.httpstatus.io
+        - address: https://maps.googleapis.com
       backend:
         - address: https://mock.httpstatus.io
+        - address: https://maps.googleapis.com
   scopes: []
