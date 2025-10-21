@@ -1,4 +1,3 @@
-// import { CircleCheck, ExternalLink, Mails, MapPin } from "lucide-react";
 import React from "react";
 
 import { Badge } from "../../ui/badge";
@@ -11,6 +10,12 @@ import {
 
 import "./OutageDetailPanel.styles.scss";
 import { OutageDetailPanelProps } from "./OutageDetailPanel.types";
+import {
+  LucideCircleCheck,
+  LucideExternalLink,
+  LucideMails,
+  LucideMapPin,
+} from "lucide-react";
 
 const OutageDetailPanel: React.FC<OutageDetailPanelProps> = ({
   incidentId = "",
@@ -64,7 +69,7 @@ const OutageDetailPanel: React.FC<OutageDetailPanelProps> = ({
             className="outageDetailPanel__link outageDetailPanel__link--primary"
             aria-label="View communication records"
             href={`/records?incidentId=${incidentData?.incidentId}`}>
-            {/* <Mails height={16} width={16} aria-hidden="true" /> */}
+            <LucideMails height={16} width={16} aria-hidden="true" />
             <span className="outageDetailPanel__linkText">
               View comms records
             </span>
@@ -74,7 +79,7 @@ const OutageDetailPanel: React.FC<OutageDetailPanelProps> = ({
             className="outageDetailPanel__link outageDetailPanel__link--secondary"
             aria-label="Open in Jira"
             href={`https://www.atlassian.com/software/jira`}>
-            {/* <External height={16} width={16} aria-hidden="true" /> */}
+            <LucideExternalLink height={16} width={16} aria-hidden="true" />
             <span className="outageDetailPanel__linkText">Open in Jira</span>
           </a>
         </div>
@@ -105,7 +110,7 @@ const OutageDetailPanel: React.FC<OutageDetailPanelProps> = ({
                 )}
 
                 <span className="outageDetailPanel__badge outageDetailPanel__badge--location">
-                  {/* <MapPin width={12} height={12} aria-hidden="true" /> */}
+                  <LucideMapPin width={12} height={12} aria-hidden="true" />
                   {incidentData.region}
                 </span>
               </div>
@@ -142,7 +147,7 @@ const OutageDetailPanel: React.FC<OutageDetailPanelProps> = ({
           <ol className="outageDetailPanel__timelineList">
             {incidentData.outageTimeline.map((item, idx) => (
               <li key={idx} className="outageDetailPanel__timelineItem">
-                {/* <CircleCheck height={24} width={24} aria-hidden="true" /> */}
+                <LucideCircleCheck height={24} width={24} aria-hidden="true" />
 
                 <div className="outageDetailPanel__timelineContent">
                   <div className="outageDetailPanel__timelineRow">
