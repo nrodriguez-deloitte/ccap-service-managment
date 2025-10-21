@@ -6,9 +6,11 @@ import { OUTAGE_TABS } from "./OutageTabs.constants";
 
 import "./OutageTabs.styles.scss";
 import { OutageCard } from "../../molecules/OutageCard";
+import { Card, CardHeader, CardContent, CardFooter } from "../../ui/card";
 
 export const OutageTabs = ({
   id,
+  loading = true,
   outageData,
   onCardClick,
 }: IOutageTabsProps) => {
@@ -30,26 +32,46 @@ export const OutageTabs = ({
           })}
         </TabsList>
 
-        {OUTAGE_TABS.map((tab, tabIndex) => {
-          const CONTENT = outageData.OUTAGES.filter(
-            (outage) => outage.type === toKebabCase(tab.label)
-          ).map((outage) => (
-            <OutageCard
-              key={outage.incidentId}
-              {...outage}
-              onCardClick={onCardClick}
-            />
-          ));
+        {loading ? (
+          <Card className="outage-item gap-2 w-full">
+            <CardHeader className="outage-item__header">
+              <div className="animate-pulse h-5 w-full mb-1 rounded-full bg-gray-200" />
 
-          return (
-            <TabsContent
-              key={tabIndex}
-              value={toKebabCase(tab.label)}
-              className="outage-tabs__content">
-              <ul>{CONTENT}</ul>
-            </TabsContent>
-          );
-        })}
+              <div className="animate-pulse h-5 w-full mb-1 rounded-full bg-gray-200" />
+            </CardHeader>
+
+            <CardContent className="outage-item__content">
+              <div className="animate-pulse h-5 w-full mb-1 rounded-full bg-gray-200" />
+            </CardContent>
+
+            <CardFooter className="outage-item__footer">
+              <div className="animate-pulse h-5 w-full rounded-full bg-gray-200" />
+
+              <div className="animate-pulse h-5 w-full rounded-full bg-gray-200" />
+            </CardFooter>
+          </Card>
+        ) : (
+          OUTAGE_TABS.map((tab, tabIndex) => {
+            const CONTENT = outageData.OUTAGES.filter(
+              (outage) => outage.type === toKebabCase(tab.label)
+            ).map((outage) => (
+              <OutageCard
+                key={outage.incidentId}
+                {...outage}
+                onCardClick={onCardClick}
+              />
+            ));
+
+            return (
+              <TabsContent
+                key={tabIndex}
+                value={toKebabCase(tab.label)}
+                className="outage-tabs__content">
+                <ul>{CONTENT}</ul>
+              </TabsContent>
+            );
+          })
+        )}
       </Tabs>
     </div>
   );
