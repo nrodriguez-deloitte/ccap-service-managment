@@ -56,15 +56,20 @@ const App: React.FC = () => {
       case "outage":
         return <Outage outageData={outageData} />;
 
-      case "records":
-        return <Records outageData={outageData} />;
-
       default:
         return (
-          <>
-            <h1>Page not found</h1>
+          <div
+            style={{
+              width: "100vw",
+              height: "calc(100vh - 150px)",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+            }}>
+            <p>Page not found</p>
             <p>The page you are looking for does not exist.</p>
-          </>
+          </div>
         );
     }
   };
