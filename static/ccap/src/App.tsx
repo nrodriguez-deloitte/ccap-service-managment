@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import "./styles/globals.css";
+import "./styles/tailwind.css";
 import "./styles/variables.css";
 
 import Nav from "./components/molecules/Navigation/Navigation";
