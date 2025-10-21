@@ -19,10 +19,15 @@ import {
 
 const OutageDetailPanel: React.FC<OutageDetailPanelProps> = ({
   incidentId = "",
+  loading = true,
   outageData,
   open = false,
   onClose,
 }) => {
+  if (loading) {
+    return null;
+  }
+
   const _incidentId = incidentId;
 
   const incidentData = outageData?.OUTAGES.find(
