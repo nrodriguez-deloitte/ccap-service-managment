@@ -18,8 +18,10 @@ permissions:
   external:
     fetch:
       backend:
-        - https://mock.httpstatus.io
-        - https://maps.googleapis.com
+        - address: https://mock.httpstatus.io
+        - address: https://maps.googleapis.com
+        - address: https://fonts.googleapis.com
+  scopes: []
 
 app:
   runtime:
