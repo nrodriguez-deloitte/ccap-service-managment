@@ -24,7 +24,9 @@ resources:
 
 permissions:
   content:
+    scripts:
+      - unsafe-eval
     styles:
       - unsafe-inline
 
-    scopes: []
+  scopes: []
