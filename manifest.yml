@@ -28,5 +28,10 @@ permissions:
       - unsafe-eval
     styles:
       - unsafe-inline
-
+  external:
+    fetch:
+      client:
+        - address: https://mock.httpstatus.io
+      backend:
+        - address: https://mock.httpstatus.io
   scopes: []

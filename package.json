@@ -5,13 +5,14 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
+    "@types/react": "^18.0.0",
     "eslint": "^8.56.0",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "typescript": "^5.0.0",
-    "@types/react": "^18.0.0"
+    "typescript": "^5.0.0"
   },
   "dependencies": {
+    "@forge/react": "^11.4.0",
     "@forge/resolver": "1.7.0",
-    "@forge/react": "^11.4.0"
+    "node-fetch": "^3.3.2"
   }
 }
