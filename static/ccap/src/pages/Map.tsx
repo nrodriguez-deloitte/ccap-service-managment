@@ -7,7 +7,6 @@ import { useFetchOutageData } from "../lib/hooks";
  * @param outageData - Data to pass to the Map component.
  */
 const MapPage: React.FC = () => {
-  // Use the custom hook to get outage data, loading, and error state
   const { data: outageData, loading, error } = useFetchOutageData();
 
   return (
