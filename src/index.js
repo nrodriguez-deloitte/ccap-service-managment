@@ -1,5 +1,6 @@
 import Resolver from "@forge/resolver";
 import api, { route } from "@forge/api";
+import { DUMMY_CONSTANTS } from "../static/ccap/src/lib/constants";
 
 const resolver = new Resolver();
 

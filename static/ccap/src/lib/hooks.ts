@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { invoke } from "@forge/bridge";
 import { IOutageDataProps } from "../types/global.types";
+import { DUMMY_CONSTANTS } from "./constants";
 
 export function useFetchOutageData() {
   const [data, setData] = useState<IOutageDataProps>({} as IOutageDataProps);
@@ -12,11 +13,12 @@ export function useFetchOutageData() {
       setLoading(true);
       setError(null);
       try {
-        const result = (await invoke("getOutageData")) as {
+        const result: {
           success: boolean;
           data?: IOutageDataProps;
           error?: string;
-        };
+        } = await invoke("getOutageData");
+
         if (result.success && result.data) {
           setData(result.data);
         } else {
