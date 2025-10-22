@@ -73,7 +73,7 @@ const OutageDetailPanel: React.FC<OutageDetailPanelProps> = ({
           <a
             className="outageDetailPanel__link outageDetailPanel__link--primary"
             aria-label="View communication records"
-            href={`/records?incidentId=${incidentData?.incidentId}`}>
+            href={`#`}>
             <LucideMails height={16} width={16} aria-hidden="true" />
             <span className="outageDetailPanel__linkText">
               View comms records
