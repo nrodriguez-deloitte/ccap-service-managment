@@ -11,6 +11,7 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
+    "@forge/api": "^6.1.4",
     "@forge/react": "^11.4.0",
     "@forge/resolver": "1.7.0",
     "node-fetch": "^3.3.2"
