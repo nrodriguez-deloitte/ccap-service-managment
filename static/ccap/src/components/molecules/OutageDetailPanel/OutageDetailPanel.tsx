@@ -1,4 +1,5 @@
 import React from "react";
+import { invoke, requestConfluence, requestJira } from "@forge/bridge";
 
 import { Badge } from "../../ui/badge";
 import {
@@ -38,6 +39,24 @@ const OutageDetailPanel: React.FC<OutageDetailPanelProps> = ({
     return null;
   }
 
+  const handleViewCommsRecords = async () => {
+    console.log("handleViewCommsRecords :::");
+    const response = await requestConfluence(`/wiki/rest/api/user/current`, {
+      headers: {
+        Accept: "application/json",
+      },
+    });
+
+    console.log("requestJira ::: ", await response.json());
+  };
+
+  const handleOpenInJira = async () => {
+    console.log("handleOpenInJira :::");
+    const response = await invoke("getJiraUsersAndPermissions");
+
+    console.log("getJiraUsersAndPermissions ::: ", response);
+  };
+
   return (
     <>
       <div
@@ -70,7 +89,27 @@ const OutageDetailPanel: React.FC<OutageDetailPanelProps> = ({
         </header>
 
         <div className="outageDetailPanel__actions">
-          <a
+          <button
+            type="button"
+            className="outageDetailPanel__link outageDetailPanel__link--primary"
+            aria-label="View communication records"
+            onClick={handleViewCommsRecords}>
+            <LucideMails height={16} width={16} aria-hidden="true" />
+            <span className="outageDetailPanel__linkText">
+              View comms records
+            </span>
+          </button>
+
+          <button
+            type="button"
+            className="outageDetailPanel__link outageDetailPanel__link--secondary"
+            aria-label="Open in Jira"
+            onClick={handleOpenInJira}>
+            <LucideExternalLink height={16} width={16} aria-hidden="true" />
+            <span className="outageDetailPanel__linkText">Open in Jira</span>
+          </button>
+
+          {/* <a
             className="outageDetailPanel__link outageDetailPanel__link--primary"
             aria-label="View communication records"
             href={`#`}>
@@ -86,7 +125,7 @@ const OutageDetailPanel: React.FC<OutageDetailPanelProps> = ({
             href={`https://www.atlassian.com/software/jira`}>
             <LucideExternalLink height={16} width={16} aria-hidden="true" />
             <span className="outageDetailPanel__linkText">Open in Jira</span>
-          </a>
+          </a> */}
         </div>
 
         <section

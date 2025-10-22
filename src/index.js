@@ -1,6 +1,5 @@
 import Resolver from "@forge/resolver";
-import fetch from "node-fetch";
-import { DUMMY_CONSTANTS } from "../static/ccap/src/lib/constants";
+import api, { route } from "@forge/api";
 
 const resolver = new Resolver();
 
@@ -13,6 +12,22 @@ resolver.define("getOutageData", async (req) => {
   } catch (error) {
     return { success: false, error: error.message };
   }
+});
+
+resolver.define("getJiraUsersAndPermissions", async () => {
+  // Get all users (paginated)
+  const usersRes = await api
+    .asUser()
+    .requestJira(route`/rest/api/3/users/search`);
+  const users = await usersRes.json();
+
+  // Get global permissions
+  const permsRes = await api
+    .asUser()
+    .requestJira(route`/rest/api/3/permissions`);
+  const permissions = await permsRes.json();
+
+  return { users, permissions };
 });
 
 export const handler = resolver.getDefinitions();
