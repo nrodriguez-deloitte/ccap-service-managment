@@ -45,4 +45,8 @@ permissions:
       backend:
         - address: https://mock.httpstatus.io
         - address: https://maps.googleapis.com
-  scopes: []
+  scopes:
+    - manage:jira-configuration
+    - read:jira-user
+    - read:permission:jira
+    - read:confluence-user
