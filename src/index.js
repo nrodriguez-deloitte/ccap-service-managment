@@ -16,19 +16,26 @@ resolver.define("getOutageData", async (req) => {
 });
 
 resolver.define("getJiraUsersAndPermissions", async () => {
-  // Get all users (paginated)
+  // Get assignable users for project 'NO'
   const usersRes = await api
     .asUser()
-    .requestJira(route`/rest/api/3/users/search`);
-  const users = await usersRes.json();
+    .requestJira(route`/rest/api/3/user/assignable/search?project=NO`);
+  const usersRaw = await usersRes.json();
 
   // Get global permissions
   const permsRes = await api
     .asUser()
     .requestJira(route`/rest/api/3/permissions`);
-  const permissions = await permsRes.json();
+  const permissionsRaw = await permsRes.json();
 
-  return { users, permissions };
+  // Map users to display name and permissions
+  const users = usersRaw.map((user) => ({
+    name: user.displayName,
+    accountId: user.accountId,
+    permissions: permissionsRaw.permissions, // Permissions are global, not per user
+  }));
+
+  return { users };
 });
 
 resolver.define("getJiraIssues", async (req) => {
