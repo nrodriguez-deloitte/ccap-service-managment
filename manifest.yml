@@ -46,6 +46,7 @@ permissions:
         - address: https://mock.httpstatus.io
         - address: https://maps.googleapis.com
   scopes:
+    - read:jira-work
     - manage:jira-configuration
     - read:jira-user
     - read:permission:jira
