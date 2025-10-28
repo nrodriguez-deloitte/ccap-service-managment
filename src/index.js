@@ -31,4 +31,43 @@ resolver.define("getJiraUsersAndPermissions", async () => {
   return { users, permissions };
 });
 
+resolver.define("getJiraIssues", async (req) => {
+  // Use a broad JQL for debugging and log the full response
+  // Update JQL and fields to get workItem (summary), priority, and Incident ID (Short text custom field)
+  const bodyData = JSON.stringify({
+    jql: "project IS NOT EMPTY AND status != Done ORDER BY created DESC",
+    fields: [
+      "summary",
+      "priority",
+      "customfield_IncidentIDShortText",
+      "status",
+      "key",
+    ],
+  });
+
+  const response = await api
+    .asUser()
+    .requestJira(route`/rest/api/3/search/jql`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: bodyData,
+    });
+
+  const data = await response.json();
+
+  // Map issues to expose required fields
+  const issues = (data.issues || []).map((issue) => ({
+    workItem: issue.fields.summary,
+    priority: issue.fields.priority?.name,
+    incidentId: issue.fields.customfield_IncidentIDShortText,
+    status: issue.fields.status.name,
+    key: issue.key,
+  }));
+
+  return { issues, raw: data };
+});
+
 export const handler = resolver.getDefinitions();
