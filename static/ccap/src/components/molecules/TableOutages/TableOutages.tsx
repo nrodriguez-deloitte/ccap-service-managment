@@ -37,13 +37,13 @@ const TableOutages: React.FC<TableOutagesProps> = ({
         header: "Region",
       },
       {
-        accessorKey: "severity",
+        accessorKey: "type",
         header: "ACMA",
         Cell: ({ cell }): React.ReactNode =>
           toTitleCase(cell.getValue<string>()),
       },
       {
-        accessorKey: "causeOfOutage",
+        accessorKey: "description",
         header: "Cause of outage",
       },
       {
