@@ -29,11 +29,11 @@ export const Map = ({ id, loading = true, outageData }: IMapProps) => {
             )}
           </div>
 
-          <OutageStats
+          {/* <OutageStats
             id="outage-stat"
             loading={loading}
             outageData={outageData}
-          />
+          /> */}
         </div>
 
         <Card className="map__map p-0 overflow-hidden">
