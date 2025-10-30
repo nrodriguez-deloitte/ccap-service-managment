@@ -51,7 +51,7 @@ export const OutageCard = (outage: IOutageCardProps) => {
 
         <CardFooter className="outage-item__footer">
           <Badge className="bg-gray-100 text-gray-900 rounded-full">
-            {toTitleCase(status)}
+            {toTitleCase(status ?? "")}
           </Badge>
 
           <p>{totalAffected.toLocaleString("en-GB")} affected</p>
