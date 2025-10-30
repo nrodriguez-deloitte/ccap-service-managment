@@ -1,25 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { invoke } from "@forge/bridge";
+
 import AiChat from "../components/molecules/AiChat";
 
 const Home: React.FC = () => {
-  const [issues, setIssues] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    invoke("getJiraIssues", {})
-      .then((result: any) => {
-        console.log("Fetched issues: ", result);
-        setIssues(result?.issues || []);
-        setLoading(false);
-      })
-      .catch((err: any) => {
-        setError(err?.message || "Failed to fetch issues");
-        setLoading(false);
-      });
-  }, []);
-
   return (
     <section className="landing__content">
       <img
@@ -38,23 +21,6 @@ const Home: React.FC = () => {
         </p>
 
         <AiChat />
-
-        {loading && <p>Loading Jira issues...</p>}
-
-        {error && <p style={{ color: "red" }}>Error: {error}</p>}
-
-        {!loading && !error && (
-          <ul>
-            {issues.map((issue: any) => (
-              <li key={issue.id}>
-                [{issue.key}]: {issue.workItem} - {issue.priority} <br />
-                Status: {issue.status}
-                <br />
-                <br />
-              </li>
-            ))}
-          </ul>
-        )}
       </div>
     </section>
   );
