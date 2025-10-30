@@ -2,6 +2,8 @@ import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
+  if (!inputs || inputs.length === 0) return "";
+
   return twMerge(clsx(inputs));
 }
 
@@ -15,10 +17,14 @@ export function cn(...inputs: ClassValue[]) {
  * @returns The kebab-cased string.
  */
 export function toKebabCase(str: string): string {
-  return str
-    .replace(/([a-z])([A-Z])/g, "$1-$2") // handle camelCase
-    .replace(/[\s_\/]+/g, "-") // spaces, underscores, and slashes to hyphens
-    .toLowerCase();
+  if (typeof str !== "string" || !str) return "";
+
+  // Replace camelCase with hyphens
+  let kebab = str.replace(/([a-z])([A-Z])/g, "$1-$2");
+  // Replace all non-alphanumeric characters (including parentheses, punctuation, etc.) with hyphens
+  kebab = kebab.replace(/[^a-zA-Z0-9]+/g, "-");
+  // Remove leading/trailing hyphens and lowercase
+  return kebab.replace(/^-+|-+$/g, "").toLowerCase();
 }
 
 /**
@@ -36,6 +42,8 @@ export function toKebabCase(str: string): string {
  * @returns {string} - The Title Case version of the string.
  */
 export function toTitleCase(str: string) {
+  if (typeof str !== "string" || !str) return "";
+
   return str
     .replace(/[-_]+/g, " ") // convert hyphens and underscores to spaces
     .toLowerCase()
@@ -58,17 +66,19 @@ export function toTitleCase(str: string) {
  * @returns {string} - A human-readable description of the creation time.
  */
 export function formatCreationTime(input: string) {
+  if (input === null || input === undefined || input === "") return "Unknown";
+
   let timestamp;
 
   // Handle input types
   if (typeof input === "string") {
     const parsed = Date.parse(input);
-    if (isNaN(parsed)) throw new Error("Invalid ISO 8601 date string.");
+    if (isNaN(parsed)) return "Unknown";
     timestamp = parsed;
   } else if (typeof input === "number") {
     timestamp = input > 1e12 ? input : input * 1000; // millis vs seconds
   } else {
-    throw new Error("Input must be a string or number.");
+    return "Unknown";
   }
 
   const now = Date.now();
@@ -103,8 +113,10 @@ export function formatCreationTime(input: string) {
  * @returns The formatted date and time string.
  */
 export function isoToDateTime(isoString: string): string {
+  if (!isoString) return "";
+
   const date = new Date(isoString);
-  if (isNaN(date.getTime())) throw new Error("Invalid ISO date string.");
+  if (isNaN(date.getTime())) return "";
 
   const pad = (n: number) => n.toString().padStart(2, "0");
 
@@ -125,15 +137,20 @@ export function isoToDateTime(isoString: string): string {
  * @returns The Tailwind CSS class names for background and text color based on severity,
  *          or `undefined` if the severity does not match any known case.
  */
-export const getSeverityVariant = (severity: string) => {
-  switch (severity) {
-    case "major":
+export const getTypeVariant = (severity: string) => {
+  if (!severity) return undefined;
+
+  switch (toKebabCase(severity)) {
+    case "major-outage":
       return "bg-red-100 text-red-900";
 
-    case "significant":
+    case "significant-local-outage--regional-":
+      return "bg-amber-200 text-amber-900";
+
+    case "significant-local-outage--remote-":
       return "bg-amber-200 text-amber-900";
 
     default:
-      break;
+      return "bg-gray-100 text-gray-900";
   }
 };
