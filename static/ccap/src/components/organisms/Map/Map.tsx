@@ -16,7 +16,7 @@ export const Map = ({ id, loading = true, outageData }: IMapProps) => {
   return (
     <div id={id} className="map w-full">
       <Card className="map__card">
-        <div className="map__header">
+        {/* <div className="map__header">
           <div className="map__text">
             <h2>Active ACMA Outages</h2>
 
@@ -29,12 +29,12 @@ export const Map = ({ id, loading = true, outageData }: IMapProps) => {
             )}
           </div>
 
-          {/* <OutageStats
+          <OutageStats
             id="outage-stat"
             loading={loading}
             outageData={outageData}
-          /> */}
-        </div>
+          />
+        </div> */}
 
         <Card className="map__map p-0 overflow-hidden">
           <GoogleMap center={{ lat: -25.7326, lng: 134.4895 }} zoom={4} />

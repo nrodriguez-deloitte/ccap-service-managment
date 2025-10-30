@@ -28,7 +28,11 @@ export const OutageStats = ({
           {loading ? (
             <div className="animate-pulse h-6 w-full mb-2 rounded-full bg-gray-200" />
           ) : (
-            <span>{outageData.ACMA_OUTAGES.toLocaleString("en-GB")}</span>
+            <span>
+              {outageData && typeof outageData.ACMA_OUTAGES === "number"
+                ? outageData.ACMA_OUTAGES.toLocaleString("en-GB")
+                : "0"}
+            </span>
           )}
           Services impacted current ACMA Outages
         </Card>
@@ -39,7 +43,11 @@ export const OutageStats = ({
           {loading ? (
             <div className="animate-pulse h-6 w-full mb-2 rounded-full bg-gray-200" />
           ) : (
-            <span>{outageData.UNPLANNED_OUTAGES.toLocaleString("en-GB")}</span>
+            <span>
+              {outageData && typeof outageData.UNPLANNED_OUTAGES === "number"
+                ? outageData.UNPLANNED_OUTAGES.toLocaleString("en-GB")
+                : "0"}
+            </span>
           )}
           Current unplanned outages
         </Card>

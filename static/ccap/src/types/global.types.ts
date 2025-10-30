@@ -40,10 +40,10 @@ export interface ICommsRecordProps {
 }
 
 export interface IOutageDataProps {
-  LAST_UPDATED: string;
-  ACMA_OUTAGES: number;
-  ONGOING_ACMA_OUTAGES: number;
-  UNPLANNED_OUTAGES: number;
+  LAST_UPDATED?: string;
+  ACMA_OUTAGES?: number;
+  ONGOING_ACMA_OUTAGES?: number;
+  UNPLANNED_OUTAGES?: number;
   OUTAGES: Array<IOutageProps>;
-  COMMS_RECORDS: Array<ICommsRecordProps>;
+  COMMS_RECORDS?: Array<ICommsRecordProps>;
 }
