@@ -24,6 +24,10 @@ export const OutageTabs = ({
         },
       ];
 
+  if (loading) {
+    return null;
+  }
+
   return (
     <div id={id} className="outage-tabs">
       <h2 className="sr-only">Outage Tabs</h2>
