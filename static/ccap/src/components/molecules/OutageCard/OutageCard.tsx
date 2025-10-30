@@ -2,7 +2,7 @@ import { Badge } from "../../ui/badge";
 import { Card, CardContent, CardFooter, CardHeader } from "../../ui/card";
 import {
   formatCreationTime,
-  getSeverityVariant,
+  getTypeVariant,
   toTitleCase,
 } from "../../../lib/utils";
 
@@ -13,8 +13,8 @@ import "./OutageCard.styles.scss";
 export const OutageCard = (outage: IOutageCardProps) => {
   const {
     title,
-    severity,
-    stage,
+    type,
+    status,
     identifiedAt,
     totalAffected,
     incidentId,
@@ -38,9 +38,9 @@ export const OutageCard = (outage: IOutageCardProps) => {
         <CardHeader className="outage-item__header">
           <h3>{title}</h3>
 
-          {severity && (
-            <Badge className={`rounded-full ${getSeverityVariant(severity)}`}>
-              {toTitleCase(severity)}
+          {type && (
+            <Badge className={`rounded-full ${getTypeVariant(type)}`}>
+              {toTitleCase(type)}
             </Badge>
           )}
         </CardHeader>
@@ -51,7 +51,7 @@ export const OutageCard = (outage: IOutageCardProps) => {
 
         <CardFooter className="outage-item__footer">
           <Badge className="bg-gray-100 text-gray-900 rounded-full">
-            {toTitleCase(stage)}
+            {toTitleCase(status)}
           </Badge>
 
           <p>{totalAffected.toLocaleString("en-GB")} affected</p>
