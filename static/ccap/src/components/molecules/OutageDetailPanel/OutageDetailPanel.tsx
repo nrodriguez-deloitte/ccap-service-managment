@@ -4,7 +4,7 @@ import { invoke, requestConfluence, requestJira } from "@forge/bridge";
 import { Badge } from "../../ui/badge";
 import {
   formatCreationTime,
-  getSeverityVariant,
+  getTypeVariant,
   isoToDateTime,
   toTitleCase,
 } from "../../../lib/utils";
@@ -138,18 +138,18 @@ const OutageDetailPanel: React.FC<OutageDetailPanelProps> = ({
               </h3>
 
               <div className="outageDetailPanel__badges">
-                {incidentData.severity && (
+                {incidentData.type && (
                   <Badge
-                    className={`rounded-full ${getSeverityVariant(
-                      incidentData.severity
+                    className={`rounded-full ${getTypeVariant(
+                      incidentData.type
                     )}`}>
-                    {toTitleCase(incidentData.severity)}
+                    {toTitleCase(incidentData.type)}
                   </Badge>
                 )}
 
-                {incidentData.stage && (
+                {incidentData.status && (
                   <Badge className="bg-gray-100 text-gray-900 rounded-full">
-                    {toTitleCase(incidentData.stage)}
+                    {toTitleCase(incidentData.status)}
                   </Badge>
                 )}
 
@@ -176,7 +176,7 @@ const OutageDetailPanel: React.FC<OutageDetailPanelProps> = ({
           </div>
         </section>
 
-        <section
+        {/* <section
           className="outageDetailPanel__timeline"
           aria-label="Outage timeline">
           <div className="outageDetailPanel__timelineHeader">
@@ -201,7 +201,7 @@ const OutageDetailPanel: React.FC<OutageDetailPanelProps> = ({
 
                     {item.severity && (
                       <Badge
-                        className={`rounded-full ${getSeverityVariant(
+                        className={`rounded-full ${getTypeVariant(
                           item.severity
                         )}`}>
                         {toTitleCase(item.severity)}
@@ -240,7 +240,7 @@ const OutageDetailPanel: React.FC<OutageDetailPanelProps> = ({
               </li>
             ))}
           </ol>
-        </section>
+        </section> */}
       </aside>
     </>
   );
