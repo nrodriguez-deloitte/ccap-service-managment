@@ -14,18 +14,30 @@ export const OutageTabs = ({
   outageData,
   onCardClick,
 }: IOutageTabsProps) => {
+  const uniqueOutageTypes = outageData?.OUTAGES
+    ? Array.from(new Set(outageData.OUTAGES.map((outage) => outage.type))).map(
+        (type) => ({ label: type })
+      )
+    : [
+        {
+          label: "General",
+        },
+      ];
+
   return (
     <div id={id} className="outage-tabs">
       <h2 className="sr-only">Outage Tabs</h2>
 
-      <Tabs defaultValue={toKebabCase(OUTAGE_TABS[0].label)} className="w-full">
+      <Tabs
+        defaultValue={toKebabCase(uniqueOutageTypes[0].label ?? "")}
+        className="w-full">
         <TabsList className="w-full">
-          {OUTAGE_TABS.map((tab, tabIndex) => {
+          {uniqueOutageTypes.map((tab, tabIndex) => {
             return (
               <TabsTrigger
                 key={tabIndex}
                 className="cursor-pointer"
-                value={toKebabCase(tab.label)}>
+                value={toKebabCase(tab.label ?? "")}>
                 {tab.label}
               </TabsTrigger>
             );
@@ -51,10 +63,12 @@ export const OutageTabs = ({
             </CardFooter>
           </Card>
         ) : (
-          OUTAGE_TABS.map((tab, tabIndex) => {
-            const CONTENT = outageData.OUTAGES.filter(
-              (outage) => outage.type === toKebabCase(tab.label)
-            ).map((outage) => (
+          uniqueOutageTypes.map((tab, tabIndex) => {
+            const CONTENT = outageData.OUTAGES.filter((outage) => {
+              return (
+                toKebabCase(outage.type ?? "") === toKebabCase(tab.label ?? "")
+              );
+            }).map((outage) => (
               <OutageCard
                 key={outage.incidentId}
                 {...outage}
@@ -65,7 +79,7 @@ export const OutageTabs = ({
             return (
               <TabsContent
                 key={tabIndex}
-                value={toKebabCase(tab.label)}
+                value={toKebabCase(tab.label ?? "")}
                 className="outage-tabs__content">
                 <ul>{CONTENT}</ul>
               </TabsContent>
