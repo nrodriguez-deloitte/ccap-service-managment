@@ -14,12 +14,12 @@ export interface OutageTimelineEvent {
 
 export interface IOutageProps {
   incidentId: string;
-  communicationId: string;
-  compliance: boolean;
-  status: string;
-  type: string;
-  severity: string;
-  stage: string;
+  communicationId?: string;
+  compliance?: boolean;
+  status?: string;
+  type?: string;
+  severity?: string;
+  stage?: string;
   region: string;
   identifiedAt: string;
   lastUpdate: string;
@@ -27,7 +27,7 @@ export interface IOutageProps {
   description: string;
   causeOfOutage: string;
   totalAffected: number;
-  outageTimeline: Array<OutageTimelineEvent>;
+  outageTimeline?: Array<OutageTimelineEvent>;
 }
 
 export interface ICommsRecordProps {
