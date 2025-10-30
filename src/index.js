@@ -44,11 +44,17 @@ resolver.define("getJiraIssues", async (req) => {
   const bodyData = JSON.stringify({
     jql: "project IS NOT EMPTY AND status != Done ORDER BY created DESC",
     fields: [
+      "key",
       "summary",
       "priority",
-      "customfield_IncidentIDShortText",
       "status",
-      "key",
+      "created",
+      "updated",
+      "customfield_10108", // * IncidentIDShortText
+      "customfield_10078", // * RegionImpactedShortText
+      "customfield_10190", // * LocationShortText
+      "customfield_10070", // * ServicesImpactedNumber
+      // "*all",
     ],
   });
 
@@ -67,11 +73,17 @@ resolver.define("getJiraIssues", async (req) => {
 
   // Map issues to expose required fields
   const issues = (data.issues || []).map((issue) => ({
-    workItem: issue.fields.summary,
-    priority: issue.fields.priority?.name,
-    incidentId: issue.fields.customfield_IncidentIDShortText,
-    status: issue.fields.status.name,
     key: issue.key,
+    title: issue.fields.summary,
+    description: issue.fields.summary,
+    type: issue.fields.priority?.name,
+    status: issue.fields.status.name,
+    identifiedAt: issue.fields.created,
+    lastUpdate: issue.fields.updated,
+    incidentId: issue.fields.customfield_10108,
+    region: issue.fields.customfield_10078,
+    location: issue.fields.customfield_10190,
+    totalAffected: issue.fields.customfield_10070,
   }));
 
   return { issues, raw: data };
