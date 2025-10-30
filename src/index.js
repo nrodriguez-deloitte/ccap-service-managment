@@ -76,8 +76,8 @@ resolver.define("getJiraIssues", async (req) => {
     key: issue.key,
     title: issue.fields.summary,
     description: issue.fields.summary,
-    type: issue.fields.priority?.name,
-    status: issue.fields.status.name,
+    type: issue.fields.priority?.name, // * major, significant, minor
+    status: issue.fields.status.name, // * stage
     identifiedAt: issue.fields.created,
     lastUpdate: issue.fields.updated,
     incidentId: issue.fields.customfield_10108,
